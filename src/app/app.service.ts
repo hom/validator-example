@@ -13,4 +13,8 @@ export class AppService {
   createZoo(body) {
     console.log(body);
   }
+
+  createPet(body) {
+    console.log(body);
+  }
 }

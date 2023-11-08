@@ -41,9 +41,35 @@ export class ZooDto {
   @IsObject({ each: true })
   @ValidateNested({ each: true })
   @Type((data: TypeHelpOptions) => {
-    console.log(data);
-    if (data.object.age) return CatDto;
-    if (data.object.weight) return DogDto;
+    const { object, property } = data;
+    console.log(
+      '🚀 ~ file: app.dto.ts:45 ~ ZooDto ~ @Type ~ property:',
+      property,
+    );
+    console.log('🚀 ~ file: app.dto.ts:45 ~ ZooDto ~ @Type ~ object:', object);
+    return CatDto;
   })
   animals: (CatDto | DogDto)[];
+}
+
+export class PetDto {
+  @ApiProperty()
+  @IsString()
+  name: string;
+
+  @ApiProperty()
+  @IsObject()
+  @ValidateNested()
+  @Type((data: TypeHelpOptions) => {
+    const { object, property } = data;
+    console.log(
+      '🚀 ~ file: app.dto.ts:45 ~ ZooDto ~ @Type ~ property:',
+      property,
+    );
+    console.log('🚀 ~ file: app.dto.ts:45 ~ ZooDto ~ @Type ~ object:', object);
+    if (object[property].age) return CatDto;
+    if (object[property].weight) return DogDto;
+    return CatDto;
+  })
+  animal: CatDto | DogDto;
 }
