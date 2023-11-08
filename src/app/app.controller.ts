@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { AppService } from './app.service';
-import { CatDto } from './app.dto';
+import { CatDto, DogDto, ZooDto } from './app.dto';
 
 @Controller()
 export class AppController {
@@ -12,7 +12,12 @@ export class AppController {
   }
 
   @Post('dog')
-  createDog(@Body() body: CatDto) {
+  createDog(@Body() body: DogDto) {
     return this.appService.createDog(body);
+  }
+
+  @Post('zoo')
+  createZoo(@Body() body: ZooDto) {
+    return this.appService.createZoo(body);
   }
 }

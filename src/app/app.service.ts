@@ -9,4 +9,8 @@ export class AppService {
   createDog(body) {
     console.log(body);
   }
+
+  createZoo(body) {
+    console.log(body);
+  }
 }
